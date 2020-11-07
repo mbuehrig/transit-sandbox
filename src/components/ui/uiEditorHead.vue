@@ -70,7 +70,7 @@ export default {
         store.commit(EditorCommits.SetUid, value);
       },
     });
-    const mode = ref(store.state.editor.mode);
+    const mode = computed(() => store.state.editor.mode);
     const primaryColor = computed({
       get: () => store.state.editor.colors.primary,
       set: (value) => {

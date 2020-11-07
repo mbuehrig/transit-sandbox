@@ -76,6 +76,7 @@ export default {
   position: relative;
   z-index: 1;
   font-size: 100px;
+  line-height: 1;
 }
 
 .line-logo--round:after {
