@@ -19,5 +19,9 @@ module.exports = {
     'no-underscore-dangle': 0,
     'no-param-reassign': 0,
     'object-curly-newline': 0,
+    '@typescript-eslint/ban-ts-ignore': 0,
   },
+  globals: {
+    "M": true,
+  }
 };

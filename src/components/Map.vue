@@ -1,5 +1,5 @@
 <template>
-  <div id="map" ref="root">{{ lines }}</div>
+  <div id="map" ref="root"></div>
 </template>
 
 <script lang="ts">
@@ -16,10 +16,6 @@ export default {
 
     onMounted(() => {
       store.dispatch(MapDispatches.Init, root.value);
-    });
-
-    watch(store.state.lines.lines, () => {
-      console.log('lines changed');
     });
 
     return {
