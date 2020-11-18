@@ -1,11 +1,11 @@
 /** BEGIN INTERFACE */
+import { IStation, IColors } from './interfaces/interfaces';
+
 export interface IEditorState {
   lineUid: string|null;
-  colors: {
-    primary: string;
-    secondary: string;
-  };
+  colors: IColors;
   mode?: number;
+  stations: Array<IStation>;
 }
 /** END INTERFACES */
 
@@ -15,6 +15,7 @@ export enum EditorCommits {
   SetPrimaryColor = 'Editor.SetPrimaryColor',
   SetSecondaryColor = 'Editor.SetSecondaryColor',
   SetMode = 'Editor.SetMode',
+  AddStation = 'Editor.AddStation',
 }
 
 export enum EditorDispatches {
@@ -27,6 +28,7 @@ const state: IEditorState = {
     primary: '',
     secondary: '#fff',
   },
+  stations: [],
 };
 
 const mutations = {
@@ -41,6 +43,9 @@ const mutations = {
   },
   [EditorCommits.SetMode]: (_state: IEditorState, payload: number) => {
     _state.mode = payload;
+  },
+  [EditorCommits.AddStation]: (_state: IEditorState, payload: IStation) => {
+    _state.stations.push(payload);
   },
 };
 
