@@ -20,10 +20,12 @@
 </template>
 
 <script lang="ts">
-import { ref, onMounted, unref } from 'vue';
+import { ref, onMounted, unref, toRaw, reactive } from 'vue';
 import { useStore } from 'vuex';
 
+import { IStation } from '../../interfaces/interfaces';
 import { EditorCommits } from '../../store/editor';
+import { Shape2Mode } from '../../const/index';
 
 export default {
   props: {},
@@ -31,14 +33,14 @@ export default {
   setup() {
     const store = useStore();
     const { map } = store.state.map;
-    const tmpPoint = ref({
+    const tmpPoint = ref<IStation>({
       lngLat: {
         lng: 0,
         lat: 0,
       },
       stationName: '',
     });
-    const modal = ref(null);
+    const modal = ref<HTMLDivElement|null>(null);
     let modalInstance;
 
     const initEventListeners = () => {
@@ -51,12 +53,20 @@ export default {
 
     const closeModal = () => {
       modalInstance.close();
+
+      tmpPoint.value.stationName = '';
     };
 
     const saveModal = () => {
-      closeModal();
+      store.commit(EditorCommits.AddStation, JSON.parse(JSON.stringify(tmpPoint.value)));
 
-      store.commit(EditorCommits.AddStation, unref(tmpPoint));
+      window.Layerer.addStationOnMap(
+        tmpPoint.value,
+        store.state.editor.colors,
+        Shape2Mode[store.state.editor.mode],
+      );
+
+      closeModal();
     };
 
     onMounted(() => {

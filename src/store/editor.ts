@@ -1,5 +1,5 @@
 /** BEGIN INTERFACE */
-import { IStation, IColors } from './interfaces/interfaces';
+import { IStation, IColors } from '../interfaces/interfaces';
 
 export interface IEditorState {
   lineUid: string|null;

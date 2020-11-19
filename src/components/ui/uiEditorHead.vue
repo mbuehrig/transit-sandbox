@@ -48,8 +48,8 @@ export default {
   },
   setup() {
     const store = useStore();
-    const refPrimaryColor: any = ref(null);
-    const refSecondaryColor: any = ref(null);
+    const refPrimaryColor = ref<HTMLElement|string>('');
+    const refSecondaryColor = ref<HTMLElement|string>('');
     const pickers: IPickers = {
       primary: {},
       secondary: {},
@@ -89,7 +89,8 @@ export default {
       pickers.primary = new Picker({ ...options,
         ...{
           el: refPrimaryColor.value,
-          default: primaryColor.value } });
+          default: primaryColor.value },
+      });
       pickers.secondary = new Picker({ ...options,
         ...{ el: refSecondaryColor.value, default: secondaryColor.value } });
 

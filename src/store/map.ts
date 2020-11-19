@@ -1,3 +1,4 @@
+import Layerer from '@/helpers/Layerer';
 import mapboxgl from 'mapbox-gl';
 
 /** BEGIN INTERFACE */
@@ -35,7 +36,13 @@ const actions = {
     const map = new mapboxgl.Map({
       container: payload,
       style: 'mapbox://styles/mapbox/streets-v11',
+      bounds: [
+        [-72.95666698353999, 41.28363171698385],
+        [-72.86529107782349, 41.339251492766465],
+      ],
     });
+
+    window.Layerer = new Layerer(map);
 
     context.commit(MapCommits.SetMap, map);
   },

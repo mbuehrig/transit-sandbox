@@ -10,10 +10,12 @@ import './assets/main.scss';
 import App from './App.vue';
 import store from './store';
 
+import Layerer from './helpers/Layerer';
+
 declare global {
   interface Window {
     M: any; //eslint-disable-line
-    Layerer: any; //eslint-disable-line
+    Layerer: Layerer; //eslint-disable-line
   }
 }
 

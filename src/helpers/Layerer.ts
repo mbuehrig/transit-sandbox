@@ -1,6 +1,6 @@
 import mapboxgl from 'mapbox-gl';
 
-import { IStation, IColors } from '../store/interfaces/interfaces';
+import { IStation, IColors } from '../interfaces/interfaces';
 
 class Layerer {
   private map: mapboxgl.Map;
@@ -35,7 +35,7 @@ class Layerer {
     markerEl.style.setProperty(this.options.variables.secondary, colors.secondary);
 
     const marker: mapboxgl.Marker = new mapboxgl.Marker(markerEl)
-      .setLngLat(station.latLng)
+      .setLngLat(station.lngLat)
       .addTo(this.map);
 
     this.editorMarkers.push(marker);

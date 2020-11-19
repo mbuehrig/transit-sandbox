@@ -1,6 +1,7 @@
 <template>
   <div :class="['ui-editor', isActive ? 'ui-editor--visible' : '']">
     <ui-editor-head></ui-editor-head>
+    <ui-station-list :stations="stations"></ui-station-list>
   </div>
 </template>
 
@@ -9,11 +10,13 @@ import { computed } from 'vue';
 import { useStore } from 'vuex';
 
 import uiEditorHead from './uiEditorHead.vue';
+import uiStationList from './uiStationList.vue';
 
 export default {
   props: {},
   components: {
     uiEditorHead,
+    uiStationList,
   },
   setup() {
     const store = useStore();
@@ -21,6 +24,7 @@ export default {
 
     return {
       isActive,
+      stations: store.state.editor.stations,
     };
   },
 };
