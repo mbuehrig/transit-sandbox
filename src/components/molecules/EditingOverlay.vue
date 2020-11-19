@@ -1,12 +1,8 @@
 <template>
   <div
     class="ui-overlay"
-    :style="[`--editorColor: ${uiEditor.color}`]"
+    :style="[`--labelBackground: ${uiEditor.colorHex}`]"
   >
-    <span
-      class="ui-overlay__label"
-      :style="[`--editorColor: ${uiEditor.color}`]"
-    >Creating Line</span>
   </div>
 </template>
 
@@ -38,16 +34,5 @@ export default {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-
-  box-shadow: inset 0 0 0 3px var(--editorColor);
-
-  &__label {
-    padding: 0.2rem 1rem;
-
-    text-transform: uppercase;
-
-    background-color: var(--editorColor);
-    color: white;
-  }
 }
 </style>

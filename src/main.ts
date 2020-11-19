@@ -1,6 +1,7 @@
 import { createApp } from 'vue';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import '@simonwep/pickr/dist/themes/nano.min.css';
+import 'normalize.css/normalize.css';
 
 import './assets/scss/main.scss';
 

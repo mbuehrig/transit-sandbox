@@ -41,19 +41,14 @@ export default {
       stationName: '',
     });
     const modal = ref<HTMLDivElement|null>(null);
-    let modalInstance;
 
     const initEventListeners = () => {
       map.on('click', (event) => {
         tmpPoint.value.lngLat = event.lngLat;
-
-        modalInstance.open();
       });
     };
 
     const closeModal = () => {
-      modalInstance.close();
-
       tmpPoint.value.stationName = '';
     };
 
@@ -71,8 +66,6 @@ export default {
 
     onMounted(() => {
       initEventListeners();
-
-      modalInstance = window.M.Modal.init(modal.value);
     });
 
     return {

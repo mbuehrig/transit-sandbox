@@ -1,6 +1,6 @@
 <template>
   <svg class="icon" aria-hidden="true">
-    <use :xlink:href="iconName"></use>
+    <use :xlink:href="iconName" :style="[`fill: ${fill}`]"></use>
   </svg>
 </template>
 <script lang="ts">
@@ -13,6 +13,10 @@ requireAll(req);
 export default {
   props: {
     icon: String,
+    fill: {
+      type: String,
+      default: '#FFF',
+    },
   },
   components: {},
   setup(props) {
@@ -26,7 +30,7 @@ export default {
 
 <style lang="scss" scoped>
 .icon {
-  width: var(--iconSize);
-  height: var(--iconSize);
+  width: var(--sizeIconDefault);
+  height: var(--sizeIconDefault);
 }
 </style>

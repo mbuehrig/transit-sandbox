@@ -14,25 +14,27 @@ const functions = {
 const eachLine = Promise.promisify(lineReader.eachLine);
 
 eachLine('./src/assets/scss/_variables.scss', (line) => {
-  let [variableName, value] = line.split(': ');
+  if (line.length > 0) {
+    let [variableName, value] = line.split(': ');
 
-  value = value.slice(0, -1);
-  variableName = `--${variableName.substring(1)}`;
+    value = value.slice(0, -1);
+    variableName = `--${variableName.substring(1)}`;
 
-  const funcRegex = /([A-Za-z]*)\((.*)\)/;
+    const funcRegex = /([A-Za-z]*)\((.*)\)/;
 
-  const valueIsVariable = value.charAt(0) === '$';
-  const valueIsFunc = funcRegex.test(value);
+    const valueIsVariable = value.charAt(0) === '$';
+    const valueIsFunc = funcRegex.test(value);
 
-  if (valueIsVariable) {
-    value = `var(--${value.substring(1)})`;
-  } else if (valueIsFunc) {
-    const [completeFunc, funcName, funcProp] = value.match(funcRegex); //eslint-disable-line
+    if (valueIsVariable) {
+      value = `var(--${value.substring(1)})`;
+    } else if (valueIsFunc) {
+      const [completeFunc, funcName, funcProp] = value.match(funcRegex); //eslint-disable-line
 
-    value = functions[funcName](funcProp);
+      value = functions[funcName](funcProp);
+    }
+
+    lines.push(`  ${variableName}: ${value};`);
   }
-
-  lines.push(`  ${variableName}: ${value};`);
 }).then(() => {
   lines.push('}');
 

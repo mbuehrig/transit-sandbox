@@ -7,6 +7,7 @@ export interface IUIState {
     active: boolean;
     mode: number;
     color: string;
+    colorHex: string;
   };
 }
 
@@ -15,13 +16,14 @@ export interface IActionButton {
   mode: number;
   id: string;
   color: string;
-  colorHex: string;
   label: string;
+  defaultColor: string;
 }
 
 export interface ISetEditor {
   mode: number;
   color: string;
+  colorHex: string;
 }
 /** END INTERFACES */
 
@@ -38,34 +40,35 @@ export enum UIDispatches {
 const defaultState: IUIState = {
   actionButtons: [
     {
-      icon: 'directions_subway',
+      icon: 'underground',
       mode: 1,
+      color: 'Blue',
       id: 'underground',
-      color: 'light-blue darken-4',
-      colorHex: '#01579b',
-      label: 'New underground line',
+      label: 'Underground',
+      defaultColor: '#0e0857',
     },
     {
-      icon: 'directions_railway',
+      icon: 'tram',
       mode: 2,
       id: 'tram',
-      color: 'green darken-4',
-      colorHex: '#1b5e20',
-      label: 'New tram line',
+      color: 'Green',
+      label: 'Tram',
+      defaultColor: '#0B5B21',
     },
     {
-      icon: 'directions_bus',
+      icon: 'bus',
       mode: 3,
       id: 'bus',
-      color: 'deep-orange darken-4',
-      colorHex: '#bf360c',
-      label: 'New bus line',
+      label: 'Bus',
+      color: 'Red',
+      defaultColor: '#7D0909',
     },
   ],
   editor: {
     active: false,
     mode: 0,
     color: '',
+    colorHex: '',
   },
 };
 
@@ -74,6 +77,7 @@ const mutations = {
     state.editor.active = true;
     state.editor.mode = payload.mode;
     state.editor.color = payload.color;
+    state.editor.colorHex = payload.colorHex;
   },
 };
 
@@ -81,7 +85,7 @@ const actions = {
   [UIDispatches.SetEditorActive]: ({ commit }, payload: ISetEditor) => {
     commit(UICommits.SetEditor, payload);
     commit(EditorCommits.SetMode, payload.mode);
-    commit(EditorCommits.SetPrimaryColor, payload.color);
+    commit(EditorCommits.SetPrimaryColor, payload.colorHex);
   },
 };
 
