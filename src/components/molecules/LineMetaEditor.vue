@@ -34,7 +34,7 @@ import { useStore } from 'vuex';
 import Picker from '@simonwep/pickr';
 
 import { EditorCommits } from '../../store/editor';
-import LineLogo from '../atoms/LineLogo';
+import LineLogo from '../atoms/LineLogo.vue';
 
 interface IPickers {
   primary: Picker|null;

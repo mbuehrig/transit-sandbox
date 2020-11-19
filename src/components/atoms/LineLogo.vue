@@ -13,7 +13,7 @@
 <script lang="ts">
 import { computed } from 'vue';
 
-import FitText from '../helpers/FitText';
+import FitText from '../helpers/FitText.vue';
 
 export default {
   props: {
