@@ -10,13 +10,13 @@ export enum LinesCommits {
 }
 /** END ENUMS */
 
-const state: ILinesState = {
+const defaultState: ILinesState = {
   lines: [1, 2, 3],
 };
 
 const mutations = {
-  [LinesCommits.Push]: (_state: ILinesState) => {
-    _state.lines.push(2);
+  [LinesCommits.Push]: (state: ILinesState) => {
+    state.lines.push(2);
   },
 };
 
@@ -24,7 +24,7 @@ const actions = {
 };
 
 export const linesModule = {
-  state,
+  defaultState,
   mutations,
   actions,
 };

@@ -1,5 +1,5 @@
 /** BEGIN INTERFACE */
-import { IStation, IColors } from '../interfaces/interfaces';
+import { IStation, IColors } from '../interfaces/shared';
 
 export interface IEditorState {
   lineUid: string|null;
@@ -22,7 +22,7 @@ export enum EditorDispatches {
 }
 /** END ENUMS */
 
-const state: IEditorState = {
+const defaultState: IEditorState = {
   lineUid: null,
   colors: {
     primary: '',
@@ -32,20 +32,20 @@ const state: IEditorState = {
 };
 
 const mutations = {
-  [EditorCommits.SetUid]: (_state: IEditorState, payload: string) => {
-    _state.lineUid = payload;
+  [EditorCommits.SetUid]: (state: IEditorState, payload: string) => {
+    state.lineUid = payload;
   },
-  [EditorCommits.SetPrimaryColor]: (_state: IEditorState, payload: string) => {
-    _state.colors.primary = payload;
+  [EditorCommits.SetPrimaryColor]: (state: IEditorState, payload: string) => {
+    state.colors.primary = payload;
   },
-  [EditorCommits.SetSecondaryColor]: (_state: IEditorState, payload: string) => {
-    _state.colors.secondary = payload;
+  [EditorCommits.SetSecondaryColor]: (state: IEditorState, payload: string) => {
+    state.colors.secondary = payload;
   },
-  [EditorCommits.SetMode]: (_state: IEditorState, payload: number) => {
-    _state.mode = payload;
+  [EditorCommits.SetMode]: (state: IEditorState, payload: number) => {
+    state.mode = payload;
   },
-  [EditorCommits.AddStation]: (_state: IEditorState, payload: IStation) => {
-    _state.stations.push(payload);
+  [EditorCommits.AddStation]: (state: IEditorState, payload: IStation) => {
+    state.stations.push(payload);
   },
 };
 
@@ -53,7 +53,7 @@ const actions = {
 };
 
 export const editorModule = {
-  state,
+  defaultState,
   mutations,
   actions,
 };

@@ -18,20 +18,20 @@ export enum MapDispatches {
 }
 /** END ENUMS */
 
-const state: IMapState = {
+const defaultState: IMapState = {
   mapKey: 'pk.eyJ1Ijoic2hldmF6cmkiLCJhIjoiY2pjMmJxajRsMGE5dTMzbW16dnprZjA1dCJ9.8ugkDgu9Wk8M-e30WPCRlg',
   map: null,
 };
 
 const mutations = {
-  [MapCommits.SetMap]: (_state: IMapState, payload: any) => {
-    _state.map = payload;
+  [MapCommits.SetMap]: (state: IMapState, payload: mapboxgl.Map) => {
+    state.map = payload;
   },
 };
 
 const actions = {
-  [MapDispatches.Init]: (context: any, payload: HTMLElement) => {
-    mapboxgl.accessToken = context.state.mapKey;
+  [MapDispatches.Init]: ({ commit, state }, payload: HTMLElement) => {
+    mapboxgl.accessToken = state.mapKey;
 
     const map = new mapboxgl.Map({
       container: payload,
@@ -44,12 +44,12 @@ const actions = {
 
     window.Layerer = new Layerer(map);
 
-    context.commit(MapCommits.SetMap, map);
+    commit(MapCommits.SetMap, map);
   },
 };
 
 export const mapModule = {
-  state,
+  defaultState,
   mutations,
   actions,
 };

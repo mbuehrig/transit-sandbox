@@ -35,7 +35,7 @@ export enum UIDispatches {
 }
 /** END ENUMS */
 
-const state: IUIState = {
+const defaultState: IUIState = {
   actionButtons: [
     {
       icon: 'directions_subway',
@@ -70,10 +70,10 @@ const state: IUIState = {
 };
 
 const mutations = {
-  [UICommits.SetEditor]: (_state: IUIState, payload: ISetEditor) => {
-    _state.editor.active = true;
-    _state.editor.mode = payload.mode;
-    _state.editor.color = payload.color;
+  [UICommits.SetEditor]: (state: IUIState, payload: ISetEditor) => {
+    state.editor.active = true;
+    state.editor.mode = payload.mode;
+    state.editor.color = payload.color;
   },
 };
 
@@ -86,7 +86,7 @@ const actions = {
 };
 
 export const uiModule = {
-  state,
+  defaultState,
   mutations,
   actions,
 };

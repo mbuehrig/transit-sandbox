@@ -34,11 +34,11 @@ import { useStore } from 'vuex';
 import Picker from '@simonwep/pickr';
 
 import { EditorCommits } from '../../store/editor';
-import LineLogo from '../atoms/LineLogo.vue';
+import LineLogo from '../atoms/LineLogo';
 
 interface IPickers {
-  primary: any;
-  secondary: any;
+  primary: Picker|null;
+  secondary: Picker|null;
 }
 
 export default {
@@ -51,8 +51,8 @@ export default {
     const refPrimaryColor = ref<HTMLElement|string>('');
     const refSecondaryColor = ref<HTMLElement|string>('');
     const pickers: IPickers = {
-      primary: {},
-      secondary: {},
+      primary: null,
+      secondary: null,
     };
     const options: Picker.Options = {
       theme: 'nano',

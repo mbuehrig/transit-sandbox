@@ -20,10 +20,10 @@
 </template>
 
 <script lang="ts">
-import { ref, onMounted, unref, toRaw, reactive } from 'vue';
+import { ref, onMounted } from 'vue';
 import { useStore } from 'vuex';
 
-import { IStation } from '../../interfaces/interfaces';
+import { IStation } from '../../interfaces/shared';
 import { EditorCommits } from '../../store/editor';
 import { Shape2Mode } from '../../const/index';
 

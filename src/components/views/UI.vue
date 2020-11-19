@@ -1,8 +1,8 @@
 <template>
   <div class="ui">
-    <ui-fab></ui-fab>
-    <ui-overlay v-if="editorIsActive"></ui-overlay>
-    <ui-editor></ui-editor>
+    <add-bar/>
+    <editing-overlay v-if="editorIsActive"/>
+    <editor/>
   </div>
 </template>
 
@@ -10,16 +10,16 @@
 import { useStore } from 'vuex';
 import { computed } from 'vue';
 
-import uiFab from './ui/uiFab.vue';
-import uiOverlay from './ui/uiOverlay.vue';
-import uiEditor from './ui/uiEditor.vue';
+import AddBar from '../molecules/AddBar';
+import EditingOverlay from '../molecules/EditingOverlay';
+import Editor from '../organisms/Editor';
 
 export default {
   props: {},
   components: {
-    uiFab,
-    uiOverlay,
-    uiEditor,
+    AddBar,
+    EditingOverlay,
+    Editor,
   },
   setup() {
     const store = useStore();

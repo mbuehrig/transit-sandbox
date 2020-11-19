@@ -7,7 +7,7 @@ import '@simonwep/pickr/dist/themes/nano.min.css';
 
 import './assets/main.scss';
 
-import App from './App.vue';
+import App from './App';
 import store from './store';
 
 import Layerer from './globalHelpers/Layerer';

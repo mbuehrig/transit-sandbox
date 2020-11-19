@@ -29,10 +29,10 @@ export default {
   props: {},
   components: {},
   setup() {
-    const root = ref(null);
+    const root = ref<HTMLDivElement|null>(null);
     const store = useStore();
     const actionButtons = computed(() => store.state.ui.actionButtons);
-    const rActionButtons = ref([]);
+    const rActionButtons = ref<HTMLAnchorElement[]>([]);
 
     onMounted(() => {
       window.M.FloatingActionButton.init(root.value, {});

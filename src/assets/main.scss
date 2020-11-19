@@ -1,3 +1,7 @@
-input {
-  margin-bottom: 4px !important;
+:root {
+  --defaultFontSize: 18px;
+}
+
+html, body {
+  font-size: var(--defaultFontSize);
 }
