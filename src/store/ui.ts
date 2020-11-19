@@ -86,7 +86,7 @@ const actions = {
 };
 
 export const uiModule = {
-  defaultState,
+  state: defaultState,
   mutations,
   actions,
 };

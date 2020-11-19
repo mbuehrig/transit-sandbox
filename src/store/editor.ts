@@ -53,7 +53,7 @@ const actions = {
 };
 
 export const editorModule = {
-  defaultState,
+  state: defaultState,
   mutations,
   actions,
 };

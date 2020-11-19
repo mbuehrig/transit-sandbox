@@ -24,7 +24,7 @@ const actions = {
 };
 
 export const linesModule = {
-  defaultState,
+  state: defaultState,
   mutations,
   actions,
 };

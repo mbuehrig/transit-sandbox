@@ -15,7 +15,6 @@ import EditingOverlay from '../molecules/EditingOverlay';
 import Editor from '../organisms/Editor';
 
 export default {
-  props: {},
   components: {
     AddBar,
     EditingOverlay,
@@ -23,7 +22,7 @@ export default {
   },
   setup() {
     const store = useStore();
-    const editorIsActive = computed(() => store.state.ui.editor.active);
+    const editorIsActive = computed<boolean>(() => store.state.ui.editor.active);
 
     return {
       editorIsActive,

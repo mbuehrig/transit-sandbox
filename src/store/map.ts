@@ -49,7 +49,7 @@ const actions = {
 };
 
 export const mapModule = {
-  defaultState,
+  state: defaultState,
   mutations,
   actions,
 };
