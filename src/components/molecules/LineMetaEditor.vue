@@ -2,7 +2,7 @@
   <div class="ui-editor-head">
     <div class="ui-editor-head__top">
       <div class="ui-editor-head__logo">
-        <ui-line-logo
+        <line-logo
           :primaryColor="primaryColor"
           :secondaryColor="secondaryColor"
           :mode="mode"
@@ -34,7 +34,7 @@ import { useStore } from 'vuex';
 import Picker from '@simonwep/pickr';
 
 import { EditorCommits } from '../../store/editor';
-import UiLineLogo from './uiLineLogo.vue';
+import LineLogo from '../atoms/LineLogo.vue';
 
 interface IPickers {
   primary: any;
@@ -44,7 +44,7 @@ interface IPickers {
 export default {
   props: {},
   components: {
-    UiLineLogo,
+    LineLogo,
   },
   setup() {
     const store = useStore();

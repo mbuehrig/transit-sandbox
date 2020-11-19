@@ -7,14 +7,14 @@
       </div>
     </div>
     <div class="modal-footer">
-      <button @click="closeModal" class="btn waves-effect red lighten-2">
+      <a @click="closeModal" class="btn-flat waves-effect red lighten-2">
         cancel
         <i class="material-icons right">cancel</i>
-      </button>
-      <button @click="saveModal" class="btn waves-effect green">
+      </a>
+      <a @click="saveModal" class="btn waves-effect green">
         save
         <i class="material-icons right">save</i>
-      </button>
+      </a>
     </div>
   </div>
 </template>
@@ -84,9 +84,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss">
-  .btn {
-    margin-left: 1em !important;
-  }
-</style>

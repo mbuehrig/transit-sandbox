@@ -1,10 +1,10 @@
-import Layerer from '@/helpers/Layerer';
+import Layerer from '@/globalHelpers/Layerer';
 import mapboxgl from 'mapbox-gl';
 
 /** BEGIN INTERFACE */
 export interface IMapState {
   mapKey: string;
-  map: any;
+  map: mapboxgl.Map|null;
 }
 /** END INTERFACES */
 

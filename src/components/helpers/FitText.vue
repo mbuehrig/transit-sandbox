@@ -18,7 +18,7 @@ export default {
   },
   components: {},
   setup(props) {
-    const root: any = ref(null);
+    const root = ref<HTMLSpanElement|null>();
     let parentElement: HTMLElement;
     const scale = ref(1);
 

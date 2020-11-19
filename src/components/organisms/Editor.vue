@@ -1,7 +1,7 @@
 <template>
   <div :class="['ui-editor', isActive ? 'ui-editor--visible' : '']">
-    <ui-editor-head></ui-editor-head>
-    <ui-station-list :stations="stations"></ui-station-list>
+    <line-meta-editor/>
+    <station-list :stations="stations"/>
   </div>
 </template>
 
@@ -9,14 +9,14 @@
 import { computed } from 'vue';
 import { useStore } from 'vuex';
 
-import uiEditorHead from './uiEditorHead.vue';
-import uiStationList from './uiStationList.vue';
+import LineMetaEditor from '../molecules/LineMetaEditor.vue';
+import StationList from '../molecules/StationList.vue';
 
 export default {
   props: {},
   components: {
-    uiEditorHead,
-    uiStationList,
+    LineMetaEditor,
+    StationList,
   },
   setup() {
     const store = useStore();

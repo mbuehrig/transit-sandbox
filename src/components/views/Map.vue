@@ -7,8 +7,8 @@
 import { onMounted, computed, ref } from 'vue';
 import { useStore } from 'vuex';
 
-import { MapDispatches } from '../store/map';
-import MapLineDrawer from './map/mapLineDrawer.vue';
+import { MapDispatches } from '../../store/map';
+import MapLineDrawer from '../map/MapLineDrawer.vue';
 
 export default {
   components: {

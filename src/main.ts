@@ -10,7 +10,7 @@ import './assets/main.scss';
 import App from './App.vue';
 import store from './store';
 
-import Layerer from './helpers/Layerer';
+import Layerer from './globalHelpers/Layerer';
 
 declare global {
   interface Window {

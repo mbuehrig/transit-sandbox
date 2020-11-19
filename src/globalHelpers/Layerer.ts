@@ -1,6 +1,6 @@
 import mapboxgl from 'mapbox-gl';
 
-import { IStation, IColors } from '../interfaces/interfaces';
+import { IStation, IColors } from '../interfaces/shared';
 
 class Layerer {
   private map: mapboxgl.Map;

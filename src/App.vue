@@ -4,8 +4,8 @@
 </template>
 
 <script lang="ts">
-import MapView from './components/Map.vue';
-import UI from './components/UI.vue';
+import MapView from './components/views/Map.vue';
+import UI from './components/views/UI.vue';
 
 export default {
   components: {
