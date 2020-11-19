@@ -25,7 +25,7 @@ module.exports = {
     'import/extensions': ['error', {
       ts: 'never',
       js: 'never',
-      vue: 'never',
+      vue: 'always'
     }],
   },
   globals: {

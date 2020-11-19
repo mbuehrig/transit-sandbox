@@ -10,9 +10,9 @@
 import { useStore } from 'vuex';
 import { computed } from 'vue';
 
-import AddBar from '../molecules/AddBar';
-import EditingOverlay from '../molecules/EditingOverlay';
-import Editor from '../organisms/Editor';
+import AddBar from '../molecules/AddBar.vue';
+import EditingOverlay from '../molecules/EditingOverlay.vue';
+import Editor from '../organisms/Editor.vue';
 
 export default {
   components: {

@@ -1,4 +1,4 @@
-import path from 'path';
+const path = require('path'); //eslint-disable-line
 
 function configSVGIcon(config) {
   config.module

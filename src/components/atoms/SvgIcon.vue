@@ -16,10 +16,17 @@ export default {
   },
   components: {},
   setup(props) {
-    const iconName = computed(() => `i-${props.icon}`);
+    const iconName = computed(() => `#i-${props.icon}`);
     return {
       iconName,
     };
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.icon {
+  width: 40px;
+  height: 40px;
+}
+</style>

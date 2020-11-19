@@ -9,8 +9,8 @@
 import { computed } from 'vue';
 import { useStore } from 'vuex';
 
-import LineMetaEditor from '../molecules/LineMetaEditor';
-import StationList from '../molecules/StationList';
+import LineMetaEditor from '../molecules/LineMetaEditor.vue';
+import StationList from '../molecules/StationList.vue';
 
 export default {
   props: {},
