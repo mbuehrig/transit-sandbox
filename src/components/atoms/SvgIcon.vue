@@ -28,7 +28,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .icon {
   width: var(--sizeIconDefault);
   height: var(--sizeIconDefault);

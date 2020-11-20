@@ -27,6 +27,7 @@ module.exports = {
       js: 'never',
       vue: 'always'
     }],
+    "@typescript-eslint/no-explicit-any": "off",
   },
   globals: {
     M: true,

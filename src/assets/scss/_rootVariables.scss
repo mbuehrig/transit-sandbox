@@ -1,10 +1,14 @@
-:root {
   --sizeFont: 15px;
   --sizeFontSmall: 0.8rem;
+  --sizeFontMedium: 1.3333333333333333rem;
+  --sizeFontBig: 2.4rem;
   --sizeIconDefault: 4rem;
   --sizeButtonDefault: 7.333333333333333rem;
+  --sizeLogoDefault: var(--sizeButtonDefault);
+  --sizeInputHeightDefault: 2.8rem;
   --colorBlack: #363333;
   --colorBlackHover: #000;
+  --colorGrey: #121;
   --colorWhite: #fff;
   --colorBlue: #0e0857;
   --colorBlueHover: #0a0641;
@@ -13,4 +17,7 @@
   --colorRed: #7D0909;
   --colorRedHover: #5d0606;
   --spaceTiny: 0.13333333333333333rem;
+  --spaceMini: 0.26666666666666666rem;
+  --spaceSmall: 0.8rem;
+  --spaceRegular: 1.2rem;
 }

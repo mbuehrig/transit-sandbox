@@ -39,9 +39,10 @@ export default {
   right: 0;
 
   z-index: 1000;
-  background: rgb(240, 240, 240);
+  background: var(--colorBlack);
 
   transform: translateX(100%);
+  box-shadow: $boxShadowBig;
 
   &--visible {
     transform: translateX(0);

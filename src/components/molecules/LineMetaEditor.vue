@@ -1,14 +1,14 @@
 <template>
-  <div class="ui-editor-head">
-    <div class="ui-editor-head__top">
-      <div class="ui-editor-head__logo">
+  <div class="line-meta-editor">
+    <div class="line-meta-editor__top">
+      <div class="line-meta-editor__logo">
         <line-logo
           :primaryColor="primaryColor"
           :secondaryColor="secondaryColor"
           :mode="mode"
           :lineUid="lineUid" />
       </div>
-      <div class="ui-editor-head__colors">
+      <div class="line-meta-editor__colors">
         <div class="input-field">
           <input ref="refPrimaryColor" v-model="primaryColor" id="primaryColor" type="text">
           <label for="primaryColor">Primary Color</label>
@@ -19,22 +19,20 @@
         </div>
       </div>
     </div>
-    <div class="ui-editor-head__main">
-      <div class="input-field">
-        <input v-model="lineUid" id="lineUid" type="text">
-        <label for="lineUid">Line ID</label>
-      </div>
+    <div class="line-meta-editor__main">
+      <text-input v-model="lineUid" id="lineUid" label="Line UID"/>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { computed, onMounted, ref, watch } from 'vue';
+import { computed, ref, watch } from 'vue';
 import { useStore } from 'vuex';
 import Picker from '@simonwep/pickr';
 
 import { EditorCommits } from '../../store/editor';
 import LineLogo from '../atoms/LineLogo.vue';
+import TextInput from '../atoms/TextInput.vue';
 
 interface IPickers {
   primary: Picker|null;
@@ -45,6 +43,7 @@ export default {
   props: {},
   components: {
     LineLogo,
+    TextInput,
   },
   setup() {
     const store = useStore();
@@ -104,16 +103,10 @@ export default {
       pickersInitialized = true;
     };
 
-    onMounted(() => {
-      setTimeout(window.M.updateTextFields, 1);
-    });
-
     watch(() => store.state.ui.editor.active, () => {
       if (!pickersInitialized) {
         initPickers();
       }
-
-      setTimeout(window.M.updateTextFields, 1);
     });
 
     return {
@@ -129,23 +122,18 @@ export default {
 </script>
 
 <style lang="scss">
-.ui-editor-head {
+.line-meta-editor {
   padding: 0 1rem 1rem 1rem;
   display: flex;
   flex-direction: column;
 }
 
-.ui-editor-head__top {
+.line-meta-editor__top {
   display: flex;
 }
 
-.ui-editor-head__colors,
-.ui-editor-head__logo {
-  flex-basis: 50%;
+.line-meta-editor__logo {
+  padding-right: var(--spaceSmall);
 }
 
-.ui-editor-head__logo {
-  position: relative;
-  padding-top: 50%;
-}
 </style>

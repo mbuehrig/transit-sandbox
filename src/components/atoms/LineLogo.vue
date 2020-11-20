@@ -4,15 +4,15 @@
     :style="[
       `--primaryColor: ${props.primaryColor}`,
       `--secondaryColor: ${props.secondaryColor}`,
+      `--size: var(--${size})`,
     ]"
   >
-    <fit-text className="line-logo__uid" :text="lineUid"></fit-text>
+    <fit-text :text="lineUid"/>
   </div>
 </template>
 
 <script lang="ts">
 import { computed } from 'vue';
-
 import FitText from '../helpers/FitText.vue';
 
 export default {
@@ -21,6 +21,10 @@ export default {
     mode: Number,
     primaryColor: String,
     secondaryColor: String,
+    size: {
+      type: String,
+      default: 'sizeLogoDefault',
+    },
   },
   components: {
     FitText,
@@ -47,16 +51,12 @@ export default {
 
 <style lang="scss">
 .line-logo {
-  position: absolute;
-  top: 8px;
-  bottom: 8px;
-  left: 0;
-  right: 16px;
+
+  width: var(--size);
+  height: var(--size);
 
   color: var(--secondaryColor);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: relative;
 
   &:after {
     content: ' ';
@@ -69,14 +69,12 @@ export default {
 
     background: var(--primaryColor);
     border: 6px solid var(--secondaryColor);
+    z-index: -1;
   }
-}
 
-.line-logo__uid {
-  position: relative;
-  z-index: 1;
-  font-size: 100px;
-  line-height: 1;
+  span {
+    line-height: var(--size);
+  }
 }
 
 .line-logo--round:after {

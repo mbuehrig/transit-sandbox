@@ -2,7 +2,7 @@
 import { IStation, IColors } from '../interfaces/shared';
 
 export interface IEditorState {
-  lineUid: string|null;
+  lineUid: string;
   colors: IColors;
   mode?: number;
   stations: Array<IStation>;
@@ -23,7 +23,7 @@ export enum EditorDispatches {
 /** END ENUMS */
 
 const defaultState: IEditorState = {
-  lineUid: null,
+  lineUid: '',
   colors: {
     primary: '',
     secondary: '#fff',

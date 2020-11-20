@@ -68,4 +68,11 @@ module.exports = {
   chainWebpack: (config) => {
     configSVGIcon(config);
   },
+  css: {
+    loaderOptions: {
+      sass: {
+        prependData: '@import "../../assets/scss/vuecomponents.scss";',
+      },
+    },
+  },
 };

@@ -3,21 +3,28 @@
     class="ui-overlay"
     :style="[`--labelBackground: ${uiEditor.colorHex}`]"
   >
+    <overlay-tab :label="tabLabel" :color="uiEditor.color"/>
   </div>
 </template>
 
 <script lang="ts">
+import { computed } from 'vue';
 import { useStore } from 'vuex';
+import OverlayTab from '../atoms/OverlayTab.vue';
 
 export default {
   props: {},
-  components: {},
+  components: {
+    OverlayTab,
+  },
   setup() {
     const store = useStore();
     const uiEditor = store.state.ui.editor;
+    const tabLabel = computed(() => `Adding line ${store.state.editor.lineUid}`);
 
     return {
       uiEditor,
+      tabLabel,
     };
   },
 };

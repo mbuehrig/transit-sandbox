@@ -8,37 +8,45 @@ let lines = [':root {'];
 const defaultFontSize = 15;
 
 const functions = {
-  pxToRem: (value) => `${value / defaultFontSize}rem`,
+  'convert-to-rem': (value) => `${value / defaultFontSize}rem`,
 };
 
-const eachLine = Promise.promisify(lineReader.eachLine);
+const run = () => {
+  const eachLine = Promise.promisify(lineReader.eachLine);
 
-eachLine('./src/assets/scss/_variables.scss', (line) => {
-  if (line.length > 0) {
-    let [variableName, value] = line.split(': ');
+  eachLine('./src/assets/scss/_variables.scss', (line) => {
+    if (line.length > 0) {
+      let [variableName, value] = line.split(': ');
 
-    value = value.slice(0, -1);
-    variableName = `--${variableName.substring(1)}`;
+      value = value.slice(0, -1);
+      variableName = `--${variableName.substring(1)}`;
 
-    const funcRegex = /([A-Za-z]*)\((.*)\)/;
+      const funcRegex = /([A-Za-z-]*)\((.*)\)/;
 
-    const valueIsVariable = value.charAt(0) === '$';
-    const valueIsFunc = funcRegex.test(value);
+      const valueIsVariable = value.charAt(0) === '$';
+      const valueIsFunc = funcRegex.test(value);
 
-    if (valueIsVariable) {
-      value = `var(--${value.substring(1)})`;
-    } else if (valueIsFunc) {
-      const [completeFunc, funcName, funcProp] = value.match(funcRegex); //eslint-disable-line
+      if (valueIsVariable) {
+        value = `var(--${value.substring(1)})`;
+      } else if (valueIsFunc) {
+        const [completeFunc, funcName, funcProp] = value.match(funcRegex); //eslint-disable-line
 
-      value = functions[funcName](funcProp);
+        value = functions[funcName](funcProp);
+      }
+
+      lines.push(`  ${variableName}: ${value};`);
     }
+  }).then(() => {
+    lines.push('}');
 
-    lines.push(`  ${variableName}: ${value};`);
-  }
-}).then(() => {
-  lines.push('}');
+    const joinedLines = lines.join('\n');
+    fs.writeFileSync('./src/assets/scss/_rootVariables.scss', joinedLines);
+  });
+};
 
-  lines = lines.join('\n');
+run();
 
-  fs.writeFileSync('./src/assets/scss/_rootVariables.scss', lines);
+fs.watch('./src/assets/scss/_variables.scss', () => {
+  lines = [':root {'];
+  run();
 });

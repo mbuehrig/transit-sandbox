@@ -1,7 +1,19 @@
-// Function for converting a px based font-size to rem.
-@function pxToRem($size) {
-  $remSize: $size / $sizeFont;
-//Default font size on html element is 100%, equivalent to 16px;
-  @return #{$remSize}rem;
+@function strip-unit($num) {
+  @return $num / ($num * 0 + 1);
 }
 
+@function convert-to-rem($value, $base-value: $sizeFont)  {
+  $value: strip-unit($value) / strip-unit($base-value) * 1rem;
+  @if ($value == 0rem) { $value: 0; } // Turn 0rem into 0
+  @return $value;
+}
+
+@function rem-calc($values, $base-value: $sizeFont) {
+  $max: length($values);
+  @if $max == 1 { @return convert-to-rem(nth($values, 1), $base-value); }
+  $remValues: ();
+  @for $i from 1 through $max {
+    $remValues: append($remValues, convert-to-rem(nth($values, $i), $base-value));
+  }
+  @return $remValues;
+}

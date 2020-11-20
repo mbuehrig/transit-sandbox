@@ -1,12 +1,17 @@
 $sizeFont: 15px;
-$sizeFontSmall: pxToRem(12);
+$sizeFontSmall: convert-to-rem(12);
+$sizeFontMedium: convert-to-rem(20);
+$sizeFontBig: convert-to-rem(36);
 
-$sizeIconDefault: pxToRem(60);
-$sizeButtonDefault: pxToRem(110);
+$sizeIconDefault: convert-to-rem(60);
+$sizeButtonDefault: convert-to-rem(110);
+$sizeLogoDefault: $sizeButtonDefault;
+$sizeInputHeightDefault: convert-to-rem(42);
 
 $colorBlack: #363333;
 $colorBlackHover: #000;
 
+$colorGrey: #121;
 $colorWhite: #fff;
 
 $colorBlue: #0e0857;
@@ -18,4 +23,7 @@ $colorGreenHover: #084418;
 $colorRed: #7D0909;
 $colorRedHover: #5d0606;
 
-$spaceTiny: pxToRem(2);
+$spaceTiny: convert-to-rem(2);
+$spaceMini: convert-to-rem(4);
+$spaceSmall: convert-to-rem(12);
+$spaceRegular: convert-to-rem(18);
