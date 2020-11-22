@@ -39,5 +39,9 @@ export default {
   #map {
     width: 100vw;
     height: 100vh;
+
+    .mapboxgl-canvas-container {
+      cursor: crosshair;
+    }
   }
 </style>

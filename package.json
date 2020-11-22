@@ -2,7 +2,6 @@
   "name": "transit-sandbox",
   "version": "0.1.0",
   "private": true,
-
   "scripts": {
     "serve": "vue-cli-service serve && node ./variablesToCSS.js",
     "build": "vue-cli-service build && node ./variablesToCSS.js",
@@ -10,8 +9,10 @@
     "variables": "node ./variablesToCSS.js"
   },
   "dependencies": {
+    "@jaames/iro": "^5.2.3",
     "@simonwep/pickr": "^1.7.4",
     "@types/mapbox-gl": "^1.12.5",
+    "clerobee": "^1.0.2",
     "core-js": "^3.6.5",
     "fitext": "^1.4.4",
     "google-fonts-webpack-plugin": "^0.4.4",
@@ -19,6 +20,7 @@
     "material-design-icons-iconfont": "^6.1.0",
     "materialize-css": "^1.0.0",
     "normalize.css": "^8.0.1",
+    "sa-unique-id": "^1.1.5",
     "vue": "^3.0.0",
     "vue-class-component": "^8.0.0-0",
     "vue-material-design-icons": "^4.10.0",

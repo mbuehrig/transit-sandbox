@@ -2,6 +2,7 @@
 export interface IStation {
   stationName: string;
   lngLat: ILngLat;
+  id?: string;
 }
 
 /** LAT LONG INTERFACE */

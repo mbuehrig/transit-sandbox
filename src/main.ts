@@ -1,4 +1,6 @@
 import { createApp } from 'vue';
+import { SaUniqueId, SaUniqueIdInterfaceStatic } from 'sa-unique-id';
+
 import 'mapbox-gl/dist/mapbox-gl.css';
 import '@simonwep/pickr/dist/themes/nano.min.css';
 import 'normalize.css/normalize.css';
@@ -14,9 +16,11 @@ declare global {
   interface Window {
     M: any; //eslint-disable-line
     Layerer: Layerer; //eslint-disable-line
+    unique: SaUniqueIdInterfaceStatic;
   }
 }
 
 window.M = window.M || {};
+window.unique = SaUniqueId;
 
 createApp(App).use(store).mount('#app');

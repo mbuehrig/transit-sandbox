@@ -1,35 +1,46 @@
 <template>
-  <div class="modal" ref="modal">
-    <div class="modal-content">
-      <div class="input-field">
-        <input v-model="tmpPoint.stationName" id="stationName" type="text">
-        <label for="stationName">Station name</label>
-      </div>
-    </div>
-    <div class="modal-footer">
-      <a @click="closeModal" class="btn-flat waves-effect red lighten-2">
-        cancel
-        <i class="material-icons right">cancel</i>
-      </a>
-      <a @click="saveModal" class="btn waves-effect green">
-        save
-        <i class="material-icons right">save</i>
-      </a>
-    </div>
+  <div class="map-line-drawer">
+    <map-station
+      v-for="(station, index) in stations"
+      :key="index"
+      :colors="colors"
+      :shape="shape"
+      :lngLat="station.lngLat"
+    />
   </div>
+  <modal v-if="showModal">
+    <template v-slot:content>
+      <big-text-input v-model="tmpPoint.stationName" id="tmp-station-name" label="station name" />
+    </template>
+    <template v-slot:foot>
+      <btn color="RedCancel" icon="close" label="cancel" sizeClass="small"
+        @click="closeModal"/>
+      <btn color="GreenConfirm" icon="check" label="save" sizeClass="small"
+        @click="saveModal"/>
+    </template>
+  </modal>
 </template>
 
 <script lang="ts">
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 import { useStore } from 'vuex';
 
 import { IStation } from '../../interfaces/shared';
 import { EditorCommits } from '../../store/editor';
+import Modal from '../molecules/Modal.vue';
+import BigTextInput from '../atoms/BigTextInput.vue';
+import Btn from '../atoms/Btn.vue';
+import MapStation from './MapStation.vue';
 import { Shape2Mode } from '../../const/index';
 
 export default {
   props: {},
-  components: {},
+  components: {
+    Modal,
+    BigTextInput,
+    Btn,
+    MapStation,
+  },
   setup() {
     const store = useStore();
     const { map } = store.state.map;
@@ -39,28 +50,30 @@ export default {
         lat: 0,
       },
       stationName: '',
+      id: '',
     });
-    const modal = ref<HTMLDivElement|null>(null);
+    const showModal = ref<boolean>(false);
+    const stations = computed(() => store.state.editor.stations);
+    const colors = computed(() => store.state.editor.colors);
+    const shape = computed(() => Shape2Mode[store.state.ui.editor.mode]);
 
     const initEventListeners = () => {
       map.on('click', (event) => {
         tmpPoint.value.lngLat = event.lngLat;
+
+        showModal.value = true;
       });
     };
 
     const closeModal = () => {
       tmpPoint.value.stationName = '';
+
+      showModal.value = false;
     };
 
     const saveModal = () => {
+      tmpPoint.value.id = window.unique.id();
       store.commit(EditorCommits.AddStation, JSON.parse(JSON.stringify(tmpPoint.value)));
-
-      window.Layerer.addStationOnMap(
-        tmpPoint.value,
-        store.state.editor.colors,
-        Shape2Mode[store.state.editor.mode],
-      );
-
       closeModal();
     };
 
@@ -70,9 +83,12 @@ export default {
 
     return {
       tmpPoint,
-      modal,
       closeModal,
       saveModal,
+      showModal,
+      stations,
+      colors,
+      shape,
     };
   },
 };

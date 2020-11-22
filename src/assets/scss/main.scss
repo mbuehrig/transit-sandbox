@@ -1,9 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
 @import 'vuecomponents';
 
 @import 'rootVariables';
 
 html, body {
   font-size: var(--sizeFont);
+  font-family: 'Inter';
 }
 
 @import 'lists';

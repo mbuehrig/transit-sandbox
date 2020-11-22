@@ -41,6 +41,8 @@ const run = () => {
 
     const joinedLines = lines.join('\n');
     fs.writeFileSync('./src/assets/scss/_rootVariables.scss', joinedLines);
+
+    lines = [':root {'];
   });
 };
 

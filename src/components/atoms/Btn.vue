@@ -1,5 +1,5 @@
 <template>
-  <button :class="['btn']" type="button" :style="
+  <button :class="['btn', `btn--${sizeClass}`]" type="button" :style="
     [`--primary: var(--color${color})`, `--primaryHover: var(--color${color}Hover)`]
   ">
     <svg-icon :icon="icon"/>
@@ -15,6 +15,10 @@ export default {
     icon: String,
     label: String,
     color: String,
+    sizeClass: {
+      type: String,
+      default: '',
+    },
   },
   components: {
     SvgIcon,
@@ -43,6 +47,11 @@ export default {
 
     background: var(--primary);
     border-radius: 0;
+
+    &--small {
+      width: var(--sizeButtonSmall);
+      height: var(--sizeButtonSmall);
+    }
   }
 
   .btn:hover {
@@ -53,6 +62,8 @@ export default {
       transform: translateY(0);
       background: var(--primaryHover);
       color: var(--colorWhite);
+
+      opacity: 1;
     }
   }
 
@@ -62,6 +73,8 @@ export default {
     bottom: 0;
     text-transform: uppercase;
     cursor: pointer;
+
+    opacity: 0;
 
     left: 0;
     right: 0;

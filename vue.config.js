@@ -1,4 +1,5 @@
 const path = require('path'); //eslint-disable-line
+const GoogleFontsPlugin = require('google-fonts-webpack-plugin'); //eslint-disable-line
 
 function configSVGIcon(config) {
   config.module
@@ -65,9 +66,7 @@ function configSVGIcon(config) {
 }
 
 module.exports = {
-  chainWebpack: (config) => {
-    configSVGIcon(config);
-  },
+  chainWebpack: (config) => configSVGIcon(config),
   css: {
     loaderOptions: {
       sass: {

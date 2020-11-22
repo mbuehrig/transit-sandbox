@@ -1,12 +1,18 @@
 $sizeFont: 15px;
 $sizeFontSmall: convert-to-rem(12);
-$sizeFontMedium: convert-to-rem(20);
+$sizeFontMedium: convert-to-rem(18);
+$sizeFontBiggerMedium: convert-to-rem(22);
 $sizeFontBig: convert-to-rem(36);
 
 $sizeIconDefault: convert-to-rem(60);
 $sizeButtonDefault: convert-to-rem(110);
+$sizeButtonSmall: convert-to-rem(60);
 $sizeLogoDefault: $sizeButtonDefault;
 $sizeInputHeightDefault: convert-to-rem(42);
+$sizeInputHeightBig: convert-to-rem(52);
+
+$sizeKnob: convert-to-rem(30);
+$sizeMarker: convert-to-rem(40);
 
 $colorBlack: #363333;
 $colorBlackHover: #000;
@@ -23,7 +29,15 @@ $colorGreenHover: #084418;
 $colorRed: #7D0909;
 $colorRedHover: #5d0606;
 
+$colorGreenConfirm: #005F26;
+$colorGreenConfirmHover: #005321;
+
+$colorRedCancel: #800404;
+$colorRedCancelHover: #6f0303;
+
 $spaceTiny: convert-to-rem(2);
 $spaceMini: convert-to-rem(4);
+$spaceLittle: convert-to-rem(9);
 $spaceSmall: convert-to-rem(12);
 $spaceRegular: convert-to-rem(18);
+$spaceLarge: convert-to-rem(28);

@@ -58,6 +58,8 @@ export default {
   color: var(--secondaryColor);
   position: relative;
 
+  box-sizing: border-box;
+
   &:after {
     content: ' ';
     display: block;
@@ -77,12 +79,18 @@ export default {
   }
 }
 
-.line-logo--round:after {
-  border-radius: 100%;
+.line-logo--round {
+  padding: 0 7.5%;
+  &:after {
+    border-radius: 100%;
+  }
 }
 
-.line-logo--diamond:after {
-  transform: rotate(45deg) scale(0.7);
+.line-logo--diamond {
+  padding: 0 13.75%;
+  &:after {
+    transform: rotate(45deg) scale(0.8);
+  }
 }
 
 </style>

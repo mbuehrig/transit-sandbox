@@ -1,11 +1,17 @@
+:root {
   --sizeFont: 15px;
   --sizeFontSmall: 0.8rem;
-  --sizeFontMedium: 1.3333333333333333rem;
+  --sizeFontMedium: 1.2rem;
+  --sizeFontBiggerMedium: 1.4666666666666666rem;
   --sizeFontBig: 2.4rem;
   --sizeIconDefault: 4rem;
   --sizeButtonDefault: 7.333333333333333rem;
+  --sizeButtonSmall: 4rem;
   --sizeLogoDefault: var(--sizeButtonDefault);
   --sizeInputHeightDefault: 2.8rem;
+  --sizeInputHeightBig: 3.466666666666667rem;
+  --sizeKnob: 2rem;
+  --sizeMarker: 2.6666666666666665rem;
   --colorBlack: #363333;
   --colorBlackHover: #000;
   --colorGrey: #121;
@@ -16,8 +22,14 @@
   --colorGreenHover: #084418;;
   --colorRed: #7D0909;
   --colorRedHover: #5d0606;
+  --colorGreenConfirm: #005F26;
+  --colorGreenConfirmHover: #005321;
+  --colorRedCancel: #800404;
+  --colorRedCancelHover: #6f0303;
   --spaceTiny: 0.13333333333333333rem;
   --spaceMini: 0.26666666666666666rem;
+  --spaceLittle: 0.6rem;
   --spaceSmall: 0.8rem;
   --spaceRegular: 1.2rem;
+  --spaceLarge: 1.8666666666666667rem;
 }

@@ -1,19 +1,26 @@
 <template>
-  <div class="overlay-tab" :style="[`--primary: var(--color${color})`]">
+  <div class="overlay-tab"
+  :style="[`--primary: ${colors.primary}`, `--secondary: ${colors.secondary}`]">
     <span>{{ label }}</span>
   </div>
 </template>
 
 <script lang="ts">
+import { computed } from 'vue';
+import { useStore } from 'vuex';
+
 export default {
   props: {
     label: String,
-    color: String,
   },
   components: {},
   setup(props) {
+    const store = useStore();
+
+    const colors = computed(() => store.state.editor.colors);
     return {
       props,
+      colors,
     };
   },
 };
@@ -34,7 +41,7 @@ $sizeOverlayTopHeight: convert-to-rem(36);
   display: flex;
   align-items: center;
 
-  color: $colorWhite;
+  color: var(--secondary);
 
   &:after {
     position: absolute;

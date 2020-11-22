@@ -1,5 +1,5 @@
 <template>
-  <div class="add-bar" ref="root">
+  <div class="add-bar" ref="root" :style="isHidden ? 'transform: translateX(100%);' : ''">
     <btn icon="plus" label="Add line" color="Black"/>
     <ul class="add-bar__functions">
       <li v-for="(actBtn) in actionButtons" :key="actBtn.id">
@@ -30,6 +30,7 @@ export default {
     const store = useStore();
     const actionButtons = computed(() => store.state.ui.actionButtons);
     const rActionButtons = ref<HTMLAnchorElement[]>([]);
+    const isHidden = computed(() => store.state.ui.editor.active);
 
     const setEditor = (mode: number, color: string, colorHex: string) => {
       store.dispatch(UIDispatches.SetEditorActive, {
@@ -45,6 +46,7 @@ export default {
       actionButtons,
       rActionButtons,
       setEditor,
+      isHidden,
     };
   },
 };

@@ -9,14 +9,8 @@
           :lineUid="lineUid" />
       </div>
       <div class="line-meta-editor__colors">
-        <div class="input-field">
-          <input ref="refPrimaryColor" v-model="primaryColor" id="primaryColor" type="text">
-          <label for="primaryColor">Primary Color</label>
-        </div>
-        <div class="input-field">
-          <input ref="refSecondaryColor" v-model="secondaryColor" id="secondaryColor" type="text">
-          <label for="secondaryColor">Secondary Color</label>
-        </div>
+        <color-input v-model="primaryColor" id="primaryColor" label="primary color"/>
+        <color-input v-model="secondaryColor" id="secondaryColor" label="secondary color" />
       </div>
     </div>
     <div class="line-meta-editor__main">
@@ -26,13 +20,14 @@
 </template>
 
 <script lang="ts">
-import { computed, ref, watch } from 'vue';
+import { computed } from 'vue';
 import { useStore } from 'vuex';
 import Picker from '@simonwep/pickr';
 
 import { EditorCommits } from '../../store/editor';
 import LineLogo from '../atoms/LineLogo.vue';
 import TextInput from '../atoms/TextInput.vue';
+import ColorInput from '../atoms/ColorInput.vue';
 
 interface IPickers {
   primary: Picker|null;
@@ -44,25 +39,10 @@ export default {
   components: {
     LineLogo,
     TextInput,
+    ColorInput,
   },
   setup() {
     const store = useStore();
-    const refPrimaryColor = ref<HTMLElement|string>('');
-    const refSecondaryColor = ref<HTMLElement|string>('');
-    const pickers: IPickers = {
-      primary: null,
-      secondary: null,
-    };
-    const options: Picker.Options = {
-      theme: 'nano',
-      useAsButton: true,
-      el: '',
-      components: {
-        preview: true,
-        opacity: false,
-        hue: true,
-      },
-    };
     const lineUid = computed({
       get: () => store.state.editor.lineUid,
       set: (value) => {
@@ -82,37 +62,9 @@ export default {
         store.commit(EditorCommits.SetSecondaryColor, value);
       },
     });
-    let pickersInitialized = false;
-
-    const initPickers = () => {
-      pickers.primary = new Picker({ ...options,
-        ...{
-          el: refPrimaryColor.value,
-          default: primaryColor.value },
-      });
-      pickers.secondary = new Picker({ ...options,
-        ...{ el: refSecondaryColor.value, default: secondaryColor.value } });
-
-      pickers.primary.on('changestop', (instance) => {
-        primaryColor.value = instance.getColor().toHEXA().toString();
-      });
-      pickers.secondary.on('changestop', (instance) => {
-        secondaryColor.value = instance.getColor().toHEXA().toString();
-      });
-
-      pickersInitialized = true;
-    };
-
-    watch(() => store.state.ui.editor.active, () => {
-      if (!pickersInitialized) {
-        initPickers();
-      }
-    });
 
     return {
       lineUid,
-      refPrimaryColor,
-      refSecondaryColor,
       primaryColor,
       secondaryColor,
       mode,
@@ -123,17 +75,21 @@ export default {
 
 <style lang="scss">
 .line-meta-editor {
-  padding: 0 1rem 1rem 1rem;
   display: flex;
   flex-direction: column;
 }
 
 .line-meta-editor__top {
   display: flex;
+  margin-bottom: var(--spaceRegular);
 }
 
 .line-meta-editor__logo {
   padding-right: var(--spaceSmall);
+}
+
+.line-meta-editor__colors {
+  flex-grow: 1;
 }
 
 </style>
