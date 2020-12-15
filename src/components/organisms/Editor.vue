@@ -72,6 +72,8 @@ export default {
   box-shadow: $boxShadowBig;
   padding: var(--spaceRegular);
 
+  transition: transform $transitionDefault;
+
   display: flex;
   flex-direction: column;
 

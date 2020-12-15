@@ -16,3 +16,9 @@ export interface IColors {
   primary: string;
   secondary: string;
 }
+
+/** INLINE */
+export interface ILeg {
+  coordinates: Array<Array<number>>;
+  id: string;
+}

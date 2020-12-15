@@ -3,6 +3,7 @@
     ref="root"
     :class="['map-station', `map-station--${shape}`]"
     :style="[`--primary: ${colors.primary}`, `--secondary: ${colors.secondary}`]">
+    <span class="map-station__name" v-if="label">{{ label }}</span>
   </div>
 </template>
 
@@ -24,6 +25,9 @@ export default {
     lngLat: {
       type: Object,
       required: true,
+    },
+    label: {
+      type: String,
     },
   },
   components: {},
@@ -76,5 +80,18 @@ export default {
       transform-origin: center center;
       transform: rotate(45deg);
     }
+  }
+
+  .map-station__name {
+    position: absolute;
+    top: 50%;
+    display: block;
+    left: calc(100% + var(--spaceSmall));
+    width: max-content;
+
+    transform: translateY(-50%);
+    color: $colorWhite;
+    font-size: var(--sizeFontMedium);
+    text-shadow: 2px 2px 10px rgba($colorBlack, 0.9);
   }
 </style>

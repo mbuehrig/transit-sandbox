@@ -1,3 +1,4 @@
+import Directerer from '@/globalHelpers/Directerer';
 import Layerer from '@/globalHelpers/Layerer';
 import mapboxgl from 'mapbox-gl';
 
@@ -43,6 +44,7 @@ const actions = {
     });
 
     window.Layerer = new Layerer(map);
+    window.Directerer = new Directerer();
 
     commit(MapCommits.SetMap, map);
   },

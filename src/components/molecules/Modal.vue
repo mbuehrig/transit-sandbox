@@ -1,5 +1,5 @@
 <template>
-  <div class="modal">
+  <div class="modal" ref="root">
     <div class="modal__popup">
       <div class="modal__content">
         <slot name="content"></slot>
@@ -12,12 +12,23 @@
 </template>
 
 <script lang="ts">
+import { onMounted, ref } from 'vue';
+
 export default {
   props: {},
   components: {},
   setup(props) {
+    const root = ref<HTMLDivElement|any>();
+
+    onMounted(() => {
+      root.value.querySelector('input').focus();
+
+      console.log(root.value.querySelector('input'));
+    });
+
     return {
       props,
+      root,
     };
   },
 };

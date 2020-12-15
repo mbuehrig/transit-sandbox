@@ -1,11 +1,12 @@
 /** BEGIN INTERFACE */
-import { IStation, IColors } from '../interfaces/shared';
+import { IStation, IColors, ILeg } from '../interfaces/shared';
 
 export interface IEditorState {
   lineUid: string;
   colors: IColors;
   mode?: number;
   stations: Array<IStation>;
+  legs: Array<ILeg>;
 }
 /** END INTERFACES */
 
@@ -16,9 +17,11 @@ export enum EditorCommits {
   SetSecondaryColor = 'Editor.SetSecondaryColor',
   SetMode = 'Editor.SetMode',
   AddStation = 'Editor.AddStation',
+  AddLeg = 'Editor.AddLeg',
 }
 
 export enum EditorDispatches {
+  AddStationAndGetRoute = 'Editor.AddStationAndGetRoute',
 }
 /** END ENUMS */
 
@@ -29,6 +32,7 @@ const defaultState: IEditorState = {
     secondary: '#fff',
   },
   stations: [],
+  legs: [],
 };
 
 const mutations = {
@@ -37,6 +41,8 @@ const mutations = {
   },
   [EditorCommits.SetPrimaryColor]: (state: IEditorState, payload: string) => {
     state.colors.primary = payload;
+
+    window.Layerer.updateColorsOnLines(state.legs, state.colors);
   },
   [EditorCommits.SetSecondaryColor]: (state: IEditorState, payload: string) => {
     state.colors.secondary = payload;
@@ -47,9 +53,33 @@ const mutations = {
   [EditorCommits.AddStation]: (state: IEditorState, payload: IStation) => {
     state.stations.push(payload);
   },
+  [EditorCommits.AddLeg]: (state: IEditorState, payload: ILeg) => {
+    state.legs.push(payload);
+  },
 };
 
 const actions = {
+  [EditorDispatches.AddStationAndGetRoute]: ({ state, commit }, { station, colors }) => {
+    const newStation = station;
+    const stationBefore = state.stations[state.stations.length - 1];
+
+    if (state.stations.length > 0) {
+      window.Directerer
+        .getDirectionsBetweenStation(stationBefore, newStation,
+          (route) => {
+            const leg: ILeg = {
+              coordinates: (route as any).routes[0].geometry.coordinates,
+              id: `${newStation.id}_${stationBefore.id}`,
+            };
+
+            commit(EditorCommits.AddLeg, leg);
+
+            window.Layerer.drawLine(leg, colors.value);
+          });
+    }
+
+    commit(EditorCommits.AddStation, newStation);
+  },
 };
 
 export const editorModule = {

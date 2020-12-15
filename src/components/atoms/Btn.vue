@@ -48,18 +48,22 @@ export default {
     background: var(--primary);
     border-radius: 0;
 
+    transition: background $transitionQuick;
+
     &--small {
       width: var(--sizeButtonSmall);
       height: var(--sizeButtonSmall);
     }
   }
 
-  .btn:hover {
+  .btn:hover,
+  .btn:focus {
     background: var(--primaryHover);
+    outline: none;
 
     .btn-label {
-      bottom: 100%;
-      transform: translateY(0);
+      top: 0;
+      transform: translateY(-100%);
       background: var(--primaryHover);
       color: var(--colorWhite);
 
@@ -70,7 +74,9 @@ export default {
   .btn-label {
     position: absolute;
 
-    bottom: 0;
+    transition: transform $transitionQuick;
+
+    top: 0;
     text-transform: uppercase;
     cursor: pointer;
 
@@ -80,10 +86,12 @@ export default {
     right: 0;
     text-align: center;
 
-    transform: translateY(100%);
+    transform: translateY(0);
 
     padding: var(--spaceTiny) 0;
 
     font-size: var(--sizeFontSmall);
+
+    z-index: -1;
   }
 </style>

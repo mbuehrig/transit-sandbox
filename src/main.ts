@@ -11,12 +11,14 @@ import App from './App.vue';
 import store from './store';
 
 import Layerer from './globalHelpers/Layerer';
+import Directerer from './globalHelpers/Directerer';
 
 declare global {
   interface Window {
     M: any; //eslint-disable-line
     Layerer: Layerer; //eslint-disable-line
     unique: SaUniqueIdInterfaceStatic;
+    Directerer: Directerer;
   }
 }
 

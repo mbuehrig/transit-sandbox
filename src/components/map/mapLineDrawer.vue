@@ -6,6 +6,7 @@
       :colors="colors"
       :shape="shape"
       :lngLat="station.lngLat"
+      :label="station.stationName"
     />
   </div>
   <modal v-if="showModal">
@@ -26,7 +27,7 @@ import { ref, onMounted, computed } from 'vue';
 import { useStore } from 'vuex';
 
 import { IStation } from '../../interfaces/shared';
-import { EditorCommits } from '../../store/editor';
+import { EditorDispatches } from '../../store/editor';
 import Modal from '../molecules/Modal.vue';
 import BigTextInput from '../atoms/BigTextInput.vue';
 import Btn from '../atoms/Btn.vue';
@@ -73,7 +74,11 @@ export default {
 
     const saveModal = () => {
       tmpPoint.value.id = window.unique.id();
-      store.commit(EditorCommits.AddStation, JSON.parse(JSON.stringify(tmpPoint.value)));
+      store.dispatch(EditorDispatches.AddStationAndGetRoute,
+        {
+          station: JSON.parse(JSON.stringify(tmpPoint.value)),
+          colors,
+        });
       closeModal();
     };
 

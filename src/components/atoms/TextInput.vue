@@ -82,6 +82,7 @@ export default {
 </script>
 
 <style lang="scss">
+
 .text-input {
   position: relative;
 
@@ -91,11 +92,11 @@ export default {
 .text-input--dirty,
 .text-input--filled {
   .text-input__label {
-    top: 0;
+    opacity: 1;
     font-size: var(--sizeFontSmall);
-
-    color: var(--secondary);
     background: var(--primary);
+    color: var(--secondary);
+    top: 0;
 
     &:after {
       display: block;
@@ -126,6 +127,7 @@ export default {
 
   color: $colorBlack;
 
+  background: transparent;
   z-index: 2;
 
   &:after {
@@ -148,6 +150,9 @@ export default {
   height: var(--sizeInputHeightDefault);
   width: 100%;
 
+  transition: background $transitionQuick, box-shadow $transitionQuick;
+
+  box-shadow: 0 0 0 rgba($colorBlack, 0);
   background: rgba($colorWhite, 0.5);
   color: $colorBlack;
   font-size: var(--sizeFontMedium);
